@@ -29,9 +29,9 @@ public class FurnServlet extends BasicServlet {
 
     public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        name = new String(name.getBytes("iso8859-1"), "utf-8");
+        //name = new String(name.getBytes("iso8859-1"), "utf-8");
         String maker = req.getParameter("maker");
-        maker = new String(maker.getBytes("iso8859-1"), "utf-8");
+        //maker = new String(maker.getBytes("iso8859-1"), "utf-8");
         String price = req.getParameter("price");
         String sales = req.getParameter("sales");
         String stock = req.getParameter("stock");
@@ -42,6 +42,7 @@ public class FurnServlet extends BasicServlet {
         Furn furn = new Furn(null, name, maker, price2, sale, stock2, null);
         if (fsi.addFurn(furn)) {
             System.out.println("添加家具成功");
+            req.getRequestDispatcher("/manage/FurnServlet?action=login").forward(req,resp);
         } else {
             System.out.println("添加家具失败！！！");
         }
