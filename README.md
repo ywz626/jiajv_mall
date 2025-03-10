@@ -4,7 +4,8 @@
 一个基于Javaweb的家具管理系统
 
 #### 软件架构
-软件架构说明
+前端：HTML css javascipt jsp jquery
+后端：tomcat服务器 和java
 
 
 #### 安装教程
