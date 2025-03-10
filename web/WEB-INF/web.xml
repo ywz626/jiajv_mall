@@ -19,6 +19,14 @@
         <servlet-name>ManageServlet</servlet-name>
         <servlet-class>com.ywz.furns.web.ManageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FurnServlet</servlet-name>
+        <servlet-class>com.ywz.furns.web.FurnServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FurnServlet</servlet-name>
+        <url-pattern>/FurnServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManageServlet</servlet-name>
         <url-pattern>/MangeServlet</url-pattern>

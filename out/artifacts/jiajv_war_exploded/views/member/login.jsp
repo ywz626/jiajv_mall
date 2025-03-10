@@ -11,6 +11,120 @@
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
+    <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {//页面加载完毕后执行function
+
+            //给用户名输入框绑定一个 blur
+            $("#username").blur(function () {
+                //获取输入的用户名 js基础
+                var username = this.value;
+                //发出ajax请求=》 jquery
+                //尽量准确，一把搞定
+                // $.getJSON("memberServlet",
+                //     "action=isExistUserName&username=" + username,
+                //     function (data) {
+                //         console.log("data=", data);
+                //     })
+
+                //相当于发送的ajax请求，携带的数据是通过json对象放入
+                //有些前端小伙伴，喜欢好看
+                $.getJSON("memberServlet", {
+                        "action": "isExistUserName",
+                        "username": username
+                    },
+                    function (data) {
+                        //console.log("data=", data.isExist);
+                        if(data.isExist) {
+                            $("span.errorMsg").text("用户名已经存在.")
+                        } else {
+                            $("span.errorMsg").text("用户名可用")
+                        }
+                    })
+
+            })
+
+
+            //决定是显示登录还是注册tab “” 不能少
+            //如果注册失败，显示注册tab , 而不是默认的登录tab, 增加该代码
+            if ("${requestScope.active}" == "register") {
+                $("#register_tab")[0].click();//模拟点击
+            }
+
+            //对验证码图片进行处理, 绑定一个点击事件，可以获取新的验证码
+            $("#codeImg").click(function () {
+                //先死后活
+                //在url没有变化时候，图片不会发出新的请求
+                //为了防止不请求，不刷新, 可以携带一个变化参数
+                this.src = "<%=request.getContextPath()%>/kaptchaServlet?d=" + new Date();
+            })
+
+            //绑定点击事件 => 忘记的去看jquery
+            $("#sub-btn").click(function () {
+
+                //获取到到输入的用户名 => 自己看前端给的页面
+                var usernameVal = $("#username").val();
+                // alert("usernameVal=" + usernameVal)
+
+                //编写正则表达式来进行验证.
+                var usernamePattern = /^\w{6,10}$/;
+                //验证
+                if (!usernamePattern.test(usernameVal)) {
+                    //展示错误提示, jquery属性过滤器
+                    $("span[class='errorMsg']").text("用户名格式不对, 需要6-10字符");
+                    return false;//不提交 , 返回false
+                }
+
+                //一关一个关的通过验证
+                //完成对密码的校验
+                var passwordVal = $("#password").val();
+                var passwordPattern = /^\w{6,10}$/;
+                if (!passwordPattern.test(passwordVal)) {
+                    //展示密码错误提示-基本过滤器, 希望小伙伴感到知识不是每个都是新
+                    //信心-》潜意识我学过.
+                    $("span.errorMsg").text("密码格式不对, 需要6-10字符");
+                    return false;
+                }
+
+                //两次密码相同
+                //得到第二次输入密码
+                var repwdVal = $("#repwd").val();
+                if (repwdVal != passwordVal) {
+                    $("span.errorMsg").text("输入的两次密码不同");
+                    return false;
+                }
+                //验证邮箱
+                //得到邮箱 => 去看html
+                var emailVal = $("#email").val();
+                //老师说明 在java中，正则表达式的转义是\\, 在js 正则表达式 转义是\
+                //如果你看不懂，回看java正则表达式
+                var emailPattern = /^[\w-]+@([a-zA-Z]+\.)+[a-zA-Z]+$/; //偷懒->java
+                if (!emailPattern.test(emailVal)) {
+                    $("span.errorMsg").text("电子邮件格式不对");
+                    return false;
+                }
+
+                // 验证码：浏览器这里验证不能为空
+                // var codeText = $("#code").val();
+                // //去掉验证码前后空格
+                // codeText = $.trim(codeText);
+                // if (codeText == null || codeText == "") {
+                //     //提示
+                //     $("span.errorMsg").text("验证码不能为空！");
+                //     return false;
+                // }
+
+                //到这里就全部过关. => 我们暂时不提交，显示验证通过信息
+                $("span.errorMsg").text("验证通过...");
+                //目前我们写了后台，当验证通过时，就提交给后台
+                return true;
+
+            })
+
+        })
+
+    </script>
 </head>
 
 <body>
