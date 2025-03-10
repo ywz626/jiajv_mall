@@ -1,39 +1,22 @@
 package com.ywz.furns.bean;
 
+import java.math.BigDecimal;
+
 /**
  * @author 于汶泽
  */
 public class Furn {
-    private int id;
+    private Integer id;
     private String name;
     private String maker;
-    private double price;
-    private int sales;
-    private int stock;
+    private BigDecimal price;
+    private Integer sales;
+    private Integer stock;
     private String img_path;
-
-    public Furn(int id, String name, String maker, double price, int sales, int stock, String img_path) {
-        this.id = id;
-        this.name = name;
-        this.maker = maker;
-        this.price = price;
-        this.sales = sales;
-        this.stock = stock;
-        this.img_path = img_path;
-    }
-
-    public Furn(String name, String maker, double price, int sales, int stock, String img_path) {
-        this.name = name;
-        this.maker = maker;
-        this.price = price;
-        this.sales = sales;
-        this.stock = stock;
-        this.img_path = img_path;
-    }
 
     @Override
     public String toString() {
-        return "Furns{" +
+        return "Furn{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", maker='" + maker + '\'' +
@@ -44,14 +27,11 @@ public class Furn {
                 '}';
     }
 
-    public Furn() {
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,27 +51,27 @@ public class Furn {
         this.maker = maker;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public int getSales() {
+    public Integer getSales() {
         return sales;
     }
 
-    public void setSales(int sales) {
+    public void setSales(Integer sales) {
         this.sales = sales;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
@@ -100,6 +80,19 @@ public class Furn {
     }
 
     public void setImg_path(String img_path) {
+        this.img_path = img_path;
+    }
+
+    public Furn() {
+    }
+
+    public Furn(Integer id, String name, String maker, BigDecimal price, Integer sales, Integer stock, String img_path) {
+        this.id = id;
+        this.name = name;
+        this.maker = maker;
+        this.price = price;
+        this.sales = sales;
+        this.stock = stock;
         this.img_path = img_path;
     }
 }
