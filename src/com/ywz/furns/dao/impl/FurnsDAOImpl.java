@@ -15,4 +15,10 @@ public class FurnsDAOImpl extends BasicDAO<Furn> implements FurnsDAO {
         String sql = "SELECT * FROM furns";
         return queryMulti(sql, Furn.class);
     }
+
+    @Override
+    public int insertFurn(Furn furn) {
+        String sql = "insert into furns(name,maker,price,sales,stock) values(?,?,?,?,?)";
+        return update(sql, furn.getName(),furn.getMaker(),furn.getPrice(),furn.getSales(),furn.getStock());
+    }
 }

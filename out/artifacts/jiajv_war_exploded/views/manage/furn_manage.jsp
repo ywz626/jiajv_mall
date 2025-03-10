@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -66,7 +66,7 @@
                             <a href="#">后台管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                            <a href="views/manage/furn_add.jsp?pageNo=${requestScope.page.pageNo}">添加家居</a>
+                            <a href="views/manage/furn_add.jsp">添加家居</a>
                         </div>
                     </div>
                 </div>

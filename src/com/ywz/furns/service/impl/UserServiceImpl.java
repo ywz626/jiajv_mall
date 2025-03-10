@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     //将用户数据放入数据库的方法
     @Override
     public boolean login(User user) {
-        return userDAO.saveUser(user)==-1?false:true;
+        return userDAO.saveUser(user) != -1;
     }
     //返回true代表密码正确，否则密码错误
     @Override

@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface FurnsService {
     public List<Furn> getFurns();
+    public boolean addFurn(Furn furn);
 }

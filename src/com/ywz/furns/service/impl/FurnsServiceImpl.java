@@ -15,4 +15,9 @@ public class FurnsServiceImpl implements FurnsService {
     public List<Furn> getFurns() {
         return furnsDAO.getAllFurns();
     }
+
+    @Override
+    public boolean addFurn(Furn furn) {
+        return furnsDAO.insertFurn(furn) != -1;
+    }
 }
