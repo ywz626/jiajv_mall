@@ -16,34 +16,34 @@
 
         $(function () {//页面加载完毕后执行function
 
-            //给用户名输入框绑定一个 blur
-            $("#username").blur(function () {
-                //获取输入的用户名 js基础
-                var username = this.value;
-                //发出ajax请求=》 jquery
-                //尽量准确，一把搞定
-                // $.getJSON("memberServlet",
-                //     "action=isExistUserName&username=" + username,
-                //     function (data) {
-                //         console.log("data=", data);
-                //     })
-
-                //相当于发送的ajax请求，携带的数据是通过json对象放入
-                //有些前端小伙伴，喜欢好看
-                $.getJSON("memberServlet", {
-                        "action": "isExistUserName",
-                        "username": username
-                    },
-                    function (data) {
-                        //console.log("data=", data.isExist);
-                        if(data.isExist) {
-                            $("span.errorMsg").text("用户名已经存在.")
-                        } else {
-                            $("span.errorMsg").text("用户名可用")
-                        }
-                    })
-
-            })
+            // //给用户名输入框绑定一个 blur
+            // $("#username").blur(function () {
+            //     //获取输入的用户名 js基础
+            //     var username = this.value;
+            //     //发出ajax请求=》 jquery
+            //     //尽量准确，一把搞定
+            //     // $.getJSON("memberServlet",
+            //     //     "action=isExistUserName&username=" + username,
+            //     //     function (data) {
+            //     //         console.log("data=", data);
+            //     //     })
+            //
+            //     //相当于发送的ajax请求，携带的数据是通过json对象放入
+            //     //有些前端小伙伴，喜欢好看
+            //     $.getJSON("memberServlet", {
+            //             "action": "isExistUserName",
+            //             "username": username
+            //         },
+            //         function (data) {
+            //             //console.log("data=", data.isExist);
+            //             if(data.isExist) {
+            //                 $("span.errorMsg").text("用户名已经存在.")
+            //             } else {
+            //                 $("span.errorMsg").text("用户名可用")
+            //             }
+            //         })
+            //
+            // })
 
 
             //决定是显示登录还是注册tab “” 不能少
@@ -53,12 +53,12 @@
             }
 
             //对验证码图片进行处理, 绑定一个点击事件，可以获取新的验证码
-            $("#codeImg").click(function () {
-                //先死后活
-                //在url没有变化时候，图片不会发出新的请求
-                //为了防止不请求，不刷新, 可以携带一个变化参数
-                this.src = "<%=request.getContextPath()%>/kaptchaServlet?d=" + new Date();
-            })
+            <%--$("#codeImg").click(function () {--%>
+            <%--    //先死后活--%>
+            <%--    //在url没有变化时候，图片不会发出新的请求--%>
+            <%--    //为了防止不请求，不刷新, 可以携带一个变化参数--%>
+            <%--    this.src = "<%=request.getContextPath()%>/kaptchaServlet?d=" + new Date();--%>
+            <%--})--%>
 
             //绑定点击事件 => 忘记的去看jquery
             $("#sub-btn").click(function () {
@@ -292,7 +292,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright &copy; 于汶泽 hahaha!!!</p>
                     </div>
                 </div>
             </div>

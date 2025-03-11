@@ -32,7 +32,7 @@ public abstract class BasicServlet extends HttpServlet {
             //将发生的异常,继续throw
             //老师心得体会: 异常机制是可以参与业务逻辑
             //老师把这个问题，暴露出来的，让你们看到. 让小伙伴学到东西.
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

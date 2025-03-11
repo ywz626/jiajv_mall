@@ -14,20 +14,11 @@
     <%--引入jquery--%>
     <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        $(function () { //页面加载完毕后执行function(){}
-
-            //绑定点击事件
-            $("a.deleteCss").click(function () {
-                //获取到要删除的家居的名字
-                var furnName = $(this).parent().parent().find("td:eq(1)").text();
-
-                //老韩解读
-                //1. confirm方法会弹出一个确认窗口
-                //2. 点击确定，返回true
-                //3. 点击取消，返回false
-                return confirm("你确定要删除【" + furnName + "】?");
+        $(function (){
+            $("a.deleteCss").click(function (){
+                let name = $(this).parent().parent().find("td:eq(1)").text();
+                return confirm("你确定要删除 [" + name + "]?");
             })
-
         })
     </script>
 </head>
@@ -131,10 +122,10 @@
                                             ${furn.stock}
                                     </td>
                                     <td class="product-remove">
-                                        <a href="manage/furnServlet?action=showFurn&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
+                                        <a href="manage/FurnServlet?action=showFurn&id=${furn.id}"><i
                                                 class="icon-pencil"></i></a>
                                         <a class="deleteCss"
-                                           href="manage/furnServlet?action=del&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
+                                           href="manage/FurnServlet?action=delete&id=${furn.id}"><i
                                                 class="icon-close"></i></a>
                                     </td>
                                 </tr>

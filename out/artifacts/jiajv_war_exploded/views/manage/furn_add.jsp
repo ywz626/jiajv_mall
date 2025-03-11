@@ -11,6 +11,32 @@
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css">
+    <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(function (){
+            $("#sub_mit").click(function (){
+                var price = $("#price").val();
+                var priceTest = /^(?:[1-9]\d*(?:\.\d+)?|0(?:\.\d+)?|\.\d+)$/
+                if(!priceTest.test(price)){
+                    $("#hid").text("价格格式错误请重新输入");
+                    return false;
+                }
+                var sales = $("#sales").val();
+                var salesTest = /^[1-9]\d*$/
+                if(!salesTest.test(sales)){
+                    $("#hid").text("销量格式错误请重新输入");
+                    return false;
+                }
+                var stock = $("#stock").val();
+                var stockTest = /^[1-9]\d*$/
+                if(!stockTest.test(stock)){
+                    $("#hid").text("库存格式错误请重新输入");
+                    return false;
+                }
+                return true;
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -73,6 +99,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="manage/FurnServlet" method="post">
                     <input type="hidden" name="action" value="add"/>
+                    <span id="hid" style="color: red"></span>
                     <div class="table-content table-responsive cart-table-content">
                         <table>
                             <thead>
@@ -94,17 +121,17 @@
                                 </td>
                                 <td class="product-name"><input name="name" style="width: 60%" type="text" value="Name"/></td>
                                 <td class="product-name"><input name="maker" style="width: 90%" type="text" value="蚂蚁家居"/></td>
-                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="60.00"/></td>
+                                <td class="product-price-cart"><input name="price" style="width: 90%" id="price" type="text" value="60.00"/></td>
                                 <td class="product-quantity">
-                                    <input name="sales" style="width: 90%" type="text" value="100"/>
+                                    <input name="sales" style="width: 90%" type="text" id="sales" value="100"/>
                                 </td>
                                 <td class="product-quantity">
-                                    <input name="stock" style="width: 90%" type="text" value="80"/>
+                                    <input name="stock" style="width: 90%" type="text" value="80" id="stock"/>
                                 </td>
                                 <td>
 <!--                                    <a href="#"><i class="icon-pencil"></i></a>-->
 <!--                                    <a href="#"><i class="icon-close"></i></a>-->
-                                    <input type="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;" value="添加家居"/>
+                                    <input type="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;" id="sub_mit" value="添加家居"/>
                                 </td>
                             </tr>
                             </tbody>

@@ -21,4 +21,24 @@ public class FurnsDAOImpl extends BasicDAO<Furn> implements FurnsDAO {
         String sql = "insert into furns(name,maker,price,sales,stock) values(?,?,?,?,?)";
         return update(sql, furn.getName(),furn.getMaker(),furn.getPrice(),furn.getSales(),furn.getStock());
     }
+
+    @Override
+    public int deleteFurn(Furn furn) {
+        String sql = "delete from furns where id=?";
+        return update(sql, furn.getId());
+    }
+
+    @Override
+    public int updateFurn(Furn furn) {
+        String sql = "update furns set name=?,maker=?,price=?,sales=?,stock=? " +
+                "where id=?";
+        return update(sql,furn.getName(),furn.getMaker(),furn.getPrice(),
+        furn.getSales(),furn.getStock(),furn.getId());
+    }
+
+    @Override
+    public Furn getFurn(Integer id) {
+        String sql = "select * from Furns where id=?";
+        return querySingle(sql, Furn.class, id);
+    }
 }

@@ -1,12 +1,13 @@
+<%@ page import="java.awt.geom.Area" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>韩顺平教育-家居网购</title>
-    <base href="http://localhost:8080/jiajv/">
     <!-- 移动端适配 -->
+    <base href=<%=request.getContextPath()+"/"%>>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
@@ -94,13 +95,13 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">家居后台管理-添加家居</h3>
+        <span style="color: red" id="hid"></span>
+        <h3 class="cart-page-title">家居后台管理-修改家居</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <form action="manage/FurnServlet" method="post">
-                    <input type="hidden" name="action" value="add"/>
-                    <span id="hid" style="color: red"></span>
+                <form action="manage/FurnServlet?action=update" method="post">
                     <div class="table-content table-responsive cart-table-content">
+                        <input type="hidden" name="id" value=${furn.id}>
                         <table>
                             <thead>
                             <tr>
@@ -119,19 +120,19 @@
                                     <a href="#"><img class="img-responsive ml-3" src="assets/images/product-image/default.jpg"
                                                      alt=""/></a>
                                 </td>
-                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="Name"/></td>
-                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="蚂蚁家居"/></td>
-                                <td class="product-price-cart"><input name="price" style="width: 90%" id="price" type="text" value="60.00"/></td>
+                                <td class="product-name"><input name="name" style="width: 60%" type="text" value=${requestScope.furn.name}></td>
+                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value=${requestScope.furn.maker}></td>
+                                <td class="product-price-cart"><input name="price" id="price" style="width: 90%" type="text" value=${furn.price}></td>
                                 <td class="product-quantity">
-                                    <input name="sales" style="width: 90%" type="text" id="sales" value="100"/>
+                                    <input name="sales" style="width: 90%" type="text" id="sales" value=${furn.sales}>
                                 </td>
                                 <td class="product-quantity">
-                                    <input name="stock" style="width: 90%" type="text" value="80" id="stock"/>
+                                    <input name="stock" style="width: 90%" type="text" id="stock" value=${furn.stock}>
                                 </td>
                                 <td>
 <!--                                    <a href="#"><i class="icon-pencil"></i></a>-->
 <!--                                    <a href="#"><i class="icon-close"></i></a>-->
-                                    <input type="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;" id="sub_mit" value="添加家居"/>
+                                    <input type="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;"  id="sub_mit" value="修改家居">
                                 </td>
                             </tr>
                             </tbody>

@@ -2,14 +2,14 @@ package com.ywz.furns.web;
 
 import com.ywz.furns.bean.Furn;
 import com.ywz.furns.service.impl.FurnsServiceImpl;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 于汶泽
@@ -28,24 +28,74 @@ public class FurnServlet extends BasicServlet {
     }
 
     public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        //name = new String(name.getBytes("iso8859-1"), "utf-8");
-        String maker = req.getParameter("maker");
-        //maker = new String(maker.getBytes("iso8859-1"), "utf-8");
-        String price = req.getParameter("price");
-        String sales = req.getParameter("sales");
-        String stock = req.getParameter("stock");
-        BigDecimal price2 = new BigDecimal(price);
-        Integer sale = Integer.parseInt(sales);
-        Integer stock2 = Integer.parseInt(stock);
-        System.out.println(name + " " + maker + " " + price2 + " " + sales + " " + stock2);
-        Furn furn = new Furn(null, name, maker, price2, sale, stock2, null);
+//        String name = req.getParameter("name");
+//        //name = new String(name.getBytes("iso8859-1"), "utf-8");
+//        String maker = req.getParameter("maker");
+//        //maker = new String(maker.getBytes("iso8859-1"), "utf-8");
+//        String price = req.getParameter("price");
+//        String sales = req.getParameter("sales");
+//        String stock = req.getParameter("stock");
+//        BigDecimal price2 = new BigDecimal(price);
+//        Integer sale = Integer.parseInt(sales);
+//        Integer stock2 = Integer.parseInt(stock);
+//        System.out.println(name + " " + maker + " " + price2 + " " + sales + " " + stock2);
+//        Furn furn = new Furn(null, name, maker, price2, sale, stock2, null);
+        Map<String, String[]> furns = req.getParameterMap();
+        Furn furn = new Furn();
+        try {
+            BeanUtils.populate(furn,furns);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         if (fsi.addFurn(furn)) {
             System.out.println("添加家具成功");
-            req.getRequestDispatcher("/manage/FurnServlet?action=login").forward(req,resp);
+            resp.sendRedirect("/jiajv/manage/FurnServlet?action=login");
+            //请求转发会造成刷新页面时重复提交数据，使用重定向解决
+            //req.getRequestDispatcher("/manage/FurnServlet?action=login").forward(req,resp);
         } else {
             System.out.println("添加家具失败！！！");
         }
+    }
+    public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Furn furn = new Furn();
+        try{
+            BeanUtils.populate(furn,req.getParameterMap());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if (fsi.deleteFurn(furn)) {
+            System.out.println(furn.getName()+"删除成功");
+            resp.sendRedirect(req.getContextPath()+"/manage/FurnServlet?action=login");
+        }else {
+            System.out.println(furn.getName() + "删除失败");
+        }
+    }
+    public void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Furn furn = new Furn();
+        Map<String, String[]> parameterMap = req.getParameterMap();
+        System.out.println("=======================");
+        for (String key : parameterMap.keySet()){
+            System.out.println(key);
+        }
+        try {
+            BeanUtils.populate(furn,req.getParameterMap());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(fsi.updateFurn(furn)){
+            System.out.println(furn.getName()+"更新成功");
+            resp.sendRedirect(req.getContextPath()+"/manage/FurnServlet?action=login");
+        } else {
+            System.out.println("更新失败");
+        }
+    }
+    public void showFurn(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
+        String id = req.getParameter("id");
+        Furn furn = fsi.getFurnById(Integer.parseInt(id));
+        System.out.println(furn);
+        req.setAttribute("furn",furn);
+        req.getRequestDispatcher("/views/manage/furn_update.jsp").forward(req, resp);
     }
 
 //    @Override

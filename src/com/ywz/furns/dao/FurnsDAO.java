@@ -12,4 +12,10 @@ public interface FurnsDAO {
     public List<Furn> getAllFurns();
     //通过传入 Furn类型来在数据库中插入家具
     public int insertFurn(Furn furn);
+    //通过传入 一个Furn对象来删除该家具
+    public int deleteFurn(Furn furn);
+    //修改家具信息
+    public int updateFurn(Furn furn);
+    //通过传入 id来获取Furn对象
+    public Furn getFurn(Integer id);
 }
