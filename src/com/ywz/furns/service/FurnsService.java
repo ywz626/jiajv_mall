@@ -1,6 +1,7 @@
 package com.ywz.furns.service;
 
 import com.ywz.furns.bean.Furn;
+import com.ywz.furns.bean.Page;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface FurnsService {
     public boolean deleteFurn(Furn furn);
     public boolean updateFurn(Furn furn);
     public Furn getFurnById(Integer id);
+    public Page<Furn> getPage(Integer pageNo, Integer pageSize);
 }

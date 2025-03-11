@@ -1,6 +1,8 @@
 package com.ywz.furns.web;
 
+import com.ywz.furns.Utils.DbUtils;
 import com.ywz.furns.bean.Furn;
+import com.ywz.furns.bean.Page;
 import com.ywz.furns.service.impl.FurnsServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -16,6 +18,15 @@ import java.util.Map;
  */
 public class FurnServlet extends BasicServlet {
     private FurnsServiceImpl fsi = new FurnsServiceImpl();
+
+    //
+    public void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int pageNo = DbUtils.getInt(request.getParameter("pageNo"), 1);
+        DbUtils.getInt(request.getParameter("pageSize"), Page.PAGE_SIZE);
+        Page<Furn> page = fsi.getPage(pageNo, Page.PAGE_SIZE);
+        request.setAttribute("page",page);
+        request.getRequestDispatcher("/views/manage/furn_manage.jsp").forward(request, response);
+    }
 
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Furn> furns = fsi.getFurns();

@@ -59,7 +59,6 @@ public class BasicDAO<T> { //泛型指定具体类型
         } finally {
             JDBCUtilsByDruid.close(null, null, connection);
         }
-
     }
 
     //查询单行结果 的通用方法

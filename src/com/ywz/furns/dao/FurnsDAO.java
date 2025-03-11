@@ -18,4 +18,8 @@ public interface FurnsDAO {
     public int updateFurn(Furn furn);
     //通过传入 id来获取Furn对象
     public Furn getFurn(Integer id);
+    // 获取总共有多少行数据
+    public int getTotalRows();
+    // 获取一页中的数据集合
+    public List<Furn> getPageData(int begin,int limit);
 }

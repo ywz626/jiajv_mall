@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    <servlet>
-        <servlet-name>UserRegisterServlet</servlet-name>
-        <servlet-class>com.ywz.furns.web.UserRegisterServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserLoginServlet</servlet-name>
-        <servlet-class>com.ywz.furns.web.UserLoginServlet</servlet-class>
-    </servlet>
+        <!--    <servlet>-->
+<!--        <servlet-name>UserRegisterServlet</servlet-name>-->
+<!--        <servlet-class>com.ywz.furns.web.UserRegisterServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet>-->
+<!--        <servlet-name>UserLoginServlet</servlet-name>-->
+<!--        <servlet-class>com.ywz.furns.web.UserLoginServlet</servlet-class>-->
+<!--    </servlet>-->
     <servlet>
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>com.ywz.furns.web.UserServlet</servlet-class>
@@ -35,12 +35,5 @@
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/UserServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserLoginServlet</servlet-name>
-        <url-pattern>/UserLoginServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserRegisterServlet</servlet-name>
-        <url-pattern>/UserRegisterServlet</url-pattern>
-    </servlet-mapping>
+
 </web-app>
