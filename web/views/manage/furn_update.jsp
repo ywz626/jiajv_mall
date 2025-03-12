@@ -96,12 +96,13 @@
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
         <span style="color: red" id="hid"></span>
-        <h3 class="cart-page-title">家居后台管理-修改家居</h3>
+        <h3 class="cart-pageNo-title">家居后台管理-修改家居</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="manage/FurnServlet?action=update" method="post">
                     <div class="table-content table-responsive cart-table-content">
                         <input type="hidden" name="id" value=${furn.id}>
+                        <input type="hidden" name="pageNo" value=${requestScope.pageNo}>
                         <table>
                             <thead>
                             <tr>

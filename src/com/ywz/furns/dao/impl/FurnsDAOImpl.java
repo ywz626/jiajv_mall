@@ -50,7 +50,7 @@ public class FurnsDAOImpl extends BasicDAO<Furn> implements FurnsDAO {
 
     @Override
     public List<Furn> getPageData(int begin, int limit) {
-        String sql = "select * from furns order by id desc limit ? offset ?";
+        String sql = "select * from furns order by id asc limit ? offset ?";
         return queryMulti(sql, Furn.class, limit,begin);
     }
 }

@@ -38,9 +38,10 @@ public class FurnsServiceImpl implements FurnsService {
             pageTotal++;
         }
         Page.setPageTotal(pageTotal);
-        Page.setPage(pageNo);
+        Page.setPageNo(pageNo);
         int begin = (pageNo-1) * pageSize;
-        furnsDAO.getPageData(begin,pageSize);
+        List<Furn> pageData = furnsDAO.getPageData(begin, pageSize);
+        Page.setDataList(pageData);
         return Page;
     }
 

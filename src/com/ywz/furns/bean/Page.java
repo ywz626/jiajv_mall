@@ -8,7 +8,7 @@ import java.util.List;
 public class Page<T> {
     public  static final Integer PAGE_SIZE = 3;
     // 当前页码
-    private Integer page;
+    private Integer pageNo;
     // 一页最多可以显示几页数据
     private Integer page_size = PAGE_SIZE;
     // 总共有多少页数据 是算出来的
@@ -34,7 +34,7 @@ public class Page<T> {
     public String toString() {
         return "Page{" +
                 "PAGE_SIZE=" + PAGE_SIZE +
-                ", page=" + page +
+                ", pageNo=" + pageNo +
                 ", page_size=" + page_size +
                 ", pageTotal=" + pageTotalCount +
                 ", dataList=" + dataList +
@@ -50,20 +50,20 @@ public class Page<T> {
         this.url = url;
     }
 
-    public Page(Integer page, Integer page_size, Integer pageTotalCount, List<T> dataList, String url) {
-        this.page = page;
+    public Page(Integer pageNo, Integer page_size, Integer pageTotalCount, List<T> dataList, String url) {
+        this.pageNo = pageNo;
         this.page_size = page_size;
         this.pageTotalCount = pageTotalCount;
         this.dataList = dataList;
         this.url = url;
     }
 
-    public Integer getPage() {
-        return page;
+    public Integer getPageNo() {
+        return pageNo;
     }
 
-    public void setPage(Integer page) {
-        this.page = page;
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
     }
 
     public Integer getPage_size() {
@@ -90,8 +90,8 @@ public class Page<T> {
         this.dataList = dataList;
     }
 
-    public Page(Integer page, Integer page_size, Integer pageTotalCount, List<T> dataList) {
-        this.page = page;
+    public Page(Integer pageNo, Integer page_size, Integer pageTotalCount, List<T> dataList) {
+        this.pageNo = pageNo;
         this.page_size = page_size;
         this.pageTotalCount = pageTotalCount;
         this.dataList = dataList;

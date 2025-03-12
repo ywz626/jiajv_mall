@@ -14,8 +14,8 @@
     <%--引入jquery--%>
     <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        $(function (){
-            $("a.deleteCss").click(function (){
+        $(function () {
+            $("a.deleteCss").click(function () {
                 let name = $(this).parent().parent().find("td:eq(1)").text();
                 return confirm("你确定要删除 [" + name + "]?");
             })
@@ -87,7 +87,7 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">家居后台管理</h3>
+        <h3 class="cart-pageNo-title">家居后台管理</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="#">
@@ -122,10 +122,10 @@
                                             ${furn.stock}
                                     </td>
                                     <td class="product-remove">
-                                        <a href="manage/FurnServlet?action=showFurn&id=${furn.id}"><i
+                                        <a href="manage/FurnServlet?action=showFurn&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
                                                 class="icon-pencil"></i></a>
                                         <a class="deleteCss"
-                                           href="manage/FurnServlet?action=delete&id=${furn.id}"><i
+                                           href="manage/FurnServlet?action=delete&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
                                                 class="icon-close"></i></a>
                                     </td>
                                 </tr>
@@ -136,76 +136,104 @@
                 </form>
             </div>
         </div>
+        <div class="pro-pagination-style text-center mb-md-30px mb-lm-30px mt-6" data-aos="fade-up">
+            <ul>
+                <%--                如果当前页大于1 就显示上一页--%>
+                <li><a href="manage/FurnServlet?action=page&pageNo=1">首页</a></li>
+                <c:if test="${requestScope.page.pageNo>1}">
+                    <li><a href="manage/FurnServlet?action=page&pageNo=${requestScope.page.pageNo-1}">上页</a></li>
+                </c:if>
+<%--                    //可以实现具体页面跳转&ndash;%&gt;--%>
+                    <c:set var="begin" value="1"></c:set>
+                    <c:set var="end" value="${requestScope.page.pageTotal}"></c:set>
+                    <c:forEach begin="${begin}" end="${end}" var="i">
+                        <c:if test="${i==requestScope.page.pageNo}">
+                            <li><a class="active" href="manage/FurnServlet?action=page&pageNo=${i}">${i}</a></li>
+                        </c:if>
+                        <c:if test="${i!=requestScope.page.pageNo}">
+                            <li><a href="manage/FurnServlet?action=page&pageNo=${i}">${i}</a></li>
+                        </c:if>
+                    </c:forEach>
+<%--                <li><a class="active" href="#">3</a></li>--%>
+<%--                <li><a href="#">4</a></li>--%>
+<%--                <li><a href="#">5</a></li>--%>
+                <c:if test="${requestScope.page.pageNo<requestScope.page.pageTotal}">
+                    <li><a href="manage/FurnServlet?action=page&pageNo=${requestScope.page.pageNo+1}">下页</a></li>
+                </c:if>
+                <li><a href="manage/FurnServlet?action=page&pageNo=${requestScope.page.pageTotal}">末页</a></li>
+                    <li><a>共${requestScope.page.pageTotal}页</a></li>
+            </ul>
+        </div>
         <!--  Pagination Area Start 分页导航条 -->
-<%--        <div class="pro-pagination-style text-center mb-md-30px mb-lm-30px mt-6" data-aos="fade-up">--%>
-<%--            <ul>--%>
-<%--                &lt;%&ndash;如果当前页 > 1 , 就显示上一页&ndash;%&gt;--%>
-<%--                <c:if test="${requestScope.page.pageNo > 1}">--%>
-<%--                    <li><a href="manage/furnServlet?action=page&pageNo=${requestScope.page.pageNo - 1}">上一页</a></li>--%>
-<%--                </c:if>--%>
-<%--                &lt;%&ndash;<li><a class="active" href="#">3</a></li>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;<li><a href="#">4</a></li>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;<li><a href="#">5</a></li>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;    显示所有的分页数， 先容易，再困难--%>
-<%--                    老师思路: 先确定开始页数 begin 第1页--%>
-<%--                            再确定结束页数 end 第pageTotalCount页--%>
-<%--                    学生困惑：如果页数很多，怎么办? => 算法最多显示5页[这个规则可以由程序员决定.]--%>
-<%--                            希望，小伙伴自己先想一想...=> 后面--%>
+        <%--        <div class="pro-pagination-style text-center mb-md-30px mb-lm-30px mt-6" data-aos="fade-up">--%>
+        <%--            <ul>--%>
+        <%--                &lt;%&ndash;如果当前页 > 1 , 就显示上一页&ndash;%&gt;--%>
+        <%--                <c:if test="${requestScope.pageNo.pageNo > 1}">--%>
+        <%--                    <li><a href="manage/furnServlet?action=pageNo&pageNo=${requestScope.pageNo.pageNo - 1}">上一页</a></li>--%>
+        <%--                </c:if>--%>
+        <%--                &lt;%&ndash;<li><a class="active" href="#">3</a></li>&ndash;%&gt;--%>
+        <%--                &lt;%&ndash;<li><a href="#">4</a></li>&ndash;%&gt;--%>
+        <%--                &lt;%&ndash;<li><a href="#">5</a></li>&ndash;%&gt;--%>
+        <%--                &lt;%&ndash;    显示所有的分页数， 先容易，再困难--%>
+        <%--                    老师思路: 先确定开始页数 begin 第1页--%>
+        <%--                            再确定结束页数 end 第pageTotalCount页--%>
+        <%--                    学生困惑：如果页数很多，怎么办? => 算法最多显示5页[这个规则可以由程序员决定.]--%>
+        <%--                            希望，小伙伴自己先想一想...=> 后面--%>
 
-<%--                    老师分析--%>
-<%--                    1. 如果总页数<=5, 就全部显示--%>
-<%--                    2. 如果总页数>5, 按照如下规则显示(这个规则是程序员/业务来确定):--%>
-<%--                    2.1 如果当前页是前3页, 就显示1-5--%>
-<%--                    2.2 如果当前页是后3页, 就显示最后5页--%>
-<%--                    2.3 如果当前页是中间页, 就显示 当前页前2页, 当前页 , 当前页后两页--%>
+        <%--                    老师分析--%>
+        <%--                    1. 如果总页数<=5, 就全部显示--%>
+        <%--                    2. 如果总页数>5, 按照如下规则显示(这个规则是程序员/业务来确定):--%>
+        <%--                    2.1 如果当前页是前3页, 就显示1-5--%>
+        <%--                    2.2 如果当前页是后3页, 就显示最后5页--%>
+        <%--                    2.3 如果当前页是中间页, 就显示 当前页前2页, 当前页 , 当前页后两页--%>
 
-<%--                    这里的关键就是要根据不同的情况来初始化begin, end--%>
-<%--                &ndash;%&gt;--%>
-<%--                <c:choose>--%>
-<%--                    &lt;%&ndash;如果总页数<=5, 就全部显示&ndash;%&gt;--%>
-<%--                    <c:when test="${requestScope.page.pageTotalCount <=5 }">--%>
-<%--                        <c:set var="begin" value="1"/>--%>
-<%--                        <c:set var="begin" value="${requestScope.page.pageTotalCount}"/>--%>
-<%--                    </c:when>--%>
-<%--                    &lt;%&ndash;如果总页数>5&ndash;%&gt;--%>
-<%--                    <c:when test="${requestScope.page.pageTotalCount > 5}">--%>
-<%--                        <c:choose>--%>
-<%--                            &lt;%&ndash;如果当前页是前3页, 就显示1-5&ndash;%&gt;--%>
-<%--                            <c:when test="${requestScope.page.pageNo <= 3}">--%>
-<%--                                <c:set var="begin" value="1"/>--%>
-<%--                                <c:set var="end" value="5"/>--%>
-<%--                            </c:when>--%>
-<%--                            &lt;%&ndash;如果当前页是后3页, 就显示最后5页&ndash;%&gt;--%>
-<%--                            <c:when test="${requestScope.page.pageNo > requestScope.page.pageTotalCount - 3}">--%>
-<%--                                <c:set var="begin" value="${requestScope.page.pageTotalCount - 4}"/>--%>
-<%--                                <c:set var="end" value="${requestScope.page.pageTotalCount}"/>--%>
-<%--                            </c:when>--%>
-<%--                            &lt;%&ndash;如果当前页是中间页, 就显示 当前页前2页, 当前页 , 当前页后两页&ndash;%&gt;--%>
-<%--                            <c:otherwise>--%>
-<%--                                <c:set var="begin" value="${requestScope.page.pageNo - 2}"/>--%>
-<%--                                <c:set var="end" value="${requestScope.page.pageNo + 2}"/>--%>
-<%--                            </c:otherwise>--%>
-<%--                        </c:choose>--%>
-<%--                    </c:when>--%>
-<%--                </c:choose>--%>
+        <%--                    这里的关键就是要根据不同的情况来初始化begin, end--%>
+        <%--                &ndash;%&gt;--%>
+        <%--                <c:choose>--%>
+        <%--                    &lt;%&ndash;如果总页数<=5, 就全部显示&ndash;%&gt;--%>
+        <%--                    <c:when test="${requestScope.pageNo.pageTotalCount <=5 }">--%>
+        <%--                        <c:set var="begin" value="1"/>--%>
+        <%--                        <c:set var="begin" value="${requestScope.pageNo.pageTotalCount}"/>--%>
+        <%--                    </c:when>--%>
+        <%--                    &lt;%&ndash;如果总页数>5&ndash;%&gt;--%>
+        <%--                    <c:when test="${requestScope.pageNo.pageTotalCount > 5}">--%>
+        <%--                        <c:choose>--%>
+        <%--                            &lt;%&ndash;如果当前页是前3页, 就显示1-5&ndash;%&gt;--%>
+        <%--                            <c:when test="${requestScope.pageNo.pageNo <= 3}">--%>
+        <%--                                <c:set var="begin" value="1"/>--%>
+        <%--                                <c:set var="end" value="5"/>--%>
+        <%--                            </c:when>--%>
+        <%--                            &lt;%&ndash;如果当前页是后3页, 就显示最后5页&ndash;%&gt;--%>
+        <%--                            <c:when test="${requestScope.pageNo.pageNo > requestScope.pageNo.pageTotalCount - 3}">--%>
+        <%--                                <c:set var="begin" value="${requestScope.pageNo.pageTotalCount - 4}"/>--%>
+        <%--                                <c:set var="end" value="${requestScope.pageNo.pageTotalCount}"/>--%>
+        <%--                            </c:when>--%>
+        <%--                            &lt;%&ndash;如果当前页是中间页, 就显示 当前页前2页, 当前页 , 当前页后两页&ndash;%&gt;--%>
+        <%--                            <c:otherwise>--%>
+        <%--                                <c:set var="begin" value="${requestScope.pageNo.pageNo - 2}"/>--%>
+        <%--                                <c:set var="end" value="${requestScope.pageNo.pageNo + 2}"/>--%>
+        <%--                            </c:otherwise>--%>
+        <%--                        </c:choose>--%>
+        <%--                    </c:when>--%>
+        <%--                </c:choose>--%>
 
-<%--                <c:forEach begin="${begin}" end="${end}" var="i">--%>
-<%--                    &lt;%&ndash;如果i是当前页, 就使用class="active" 修饰&ndash;%&gt;--%>
-<%--                    <c:if test="${i == requestScope.page.pageNo}">--%>
-<%--                        <li><a class="active" href="manage/furnServlet?action=page&pageNo=${i}">${i}</a></li>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${i != requestScope.page.pageNo}">--%>
-<%--                        <li><a href="manage/furnServlet?action=page&pageNo=${i}">${i}</a></li>--%>
-<%--                    </c:if>--%>
+        <%--                <c:forEach begin="${begin}" end="${end}" var="i">--%>
+        <%--                    &lt;%&ndash;如果i是当前页, 就使用class="active" 修饰&ndash;%&gt;--%>
+        <%--                    <c:if test="${i == requestScope.pageNo.pageNo}">--%>
+        <%--                        <li><a class="active" href="manage/furnServlet?action=pageNo&pageNo=${i}">${i}</a></li>--%>
+        <%--                    </c:if>--%>
+        <%--                    <c:if test="${i != requestScope.pageNo.pageNo}">--%>
+        <%--                        <li><a href="manage/furnServlet?action=pageNo&pageNo=${i}">${i}</a></li>--%>
+        <%--                    </c:if>--%>
 
-<%--                </c:forEach>--%>
-<%--                &lt;%&ndash;如果当前页 < 总页数 , 就显示下一页&ndash;%&gt;--%>
-<%--                <c:if test="${requestScope.page.pageNo < requestScope.page.pageTotalCount}">--%>
-<%--                    <li><a href="manage/furnServlet?action=page&pageNo=${requestScope.page.pageNo + 1}">下一页</a></li>--%>
-<%--                </c:if>--%>
-<%--                <li><a href="#">共 ${requestScope.page.pageTotalCount} 页</a></li>--%>
-<%--            </ul>--%>
-<%--        </div>--%>
+        <%--                </c:forEach>--%>
+        <%--                &lt;%&ndash;如果当前页 < 总页数 , 就显示下一页&ndash;%&gt;--%>
+        <%--                <c:if test="${requestScope.pageNo.pageNo < requestScope.pageNo.pageTotalCount}">--%>
+        <%--                    <li><a href="manage/furnServlet?action=pageNo&pageNo=${requestScope.pageNo.pageNo + 1}">下一页</a></li>--%>
+        <%--                </c:if>--%>
+        <%--                <li><a href="#">共 ${requestScope.pageNo.pageTotalCount} 页</a></li>--%>
+        <%--            </ul>--%>
+        <%--        </div>--%>
         <!--  Pagination Area End -->
     </div>
 </div>
@@ -229,7 +257,8 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="about.html">关于我们</a></li>
                                         <li class="li"><a class="single-link" href="#">交货信息</a></li>
-                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a></li>
+                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="#">条款和条件</a></li>
                                         <li class="li"><a class="single-link" href="#">制造</a></li>
                                     </ul>

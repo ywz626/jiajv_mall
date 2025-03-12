@@ -22,8 +22,12 @@ public class FurnServlet extends BasicServlet {
     //
     public void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int pageNo = DbUtils.getInt(request.getParameter("pageNo"), 1);
-        DbUtils.getInt(request.getParameter("pageSize"), Page.PAGE_SIZE);
-        Page<Furn> page = fsi.getPage(pageNo, Page.PAGE_SIZE);
+        int pageSize = DbUtils.getInt(request.getParameter("pageSize"), Page.PAGE_SIZE);
+        Page<Furn> page = fsi.getPage(pageNo, pageSize);
+        List<Furn> dataList = page.getDataList();
+//        for (Furn furn : dataList) {
+//            System.out.println(furn);
+//        }
         request.setAttribute("page",page);
         request.getRequestDispatcher("/views/manage/furn_manage.jsp").forward(request, response);
     }
@@ -32,7 +36,7 @@ public class FurnServlet extends BasicServlet {
         List<Furn> furns = fsi.getFurns();
         //System.out.println(furns);
         if (furns != null && furns.size() > 0) {
-            System.out.println("成功");
+           // System.out.println("成功");
             req.setAttribute("furns", furns);
             req.getRequestDispatcher("/views/manage/furn_manage.jsp").forward(req, resp);
         }
@@ -70,6 +74,7 @@ public class FurnServlet extends BasicServlet {
     }
     public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Furn furn = new Furn();
+        String pageNo = req.getParameter("pageNo");
         try{
             BeanUtils.populate(furn,req.getParameterMap());
         }catch (Exception e){
@@ -77,7 +82,7 @@ public class FurnServlet extends BasicServlet {
         }
         if (fsi.deleteFurn(furn)) {
             System.out.println(furn.getName()+"删除成功");
-            resp.sendRedirect(req.getContextPath()+"/manage/FurnServlet?action=login");
+            resp.sendRedirect(req.getContextPath()+"/manage/FurnServlet?action=page&pageNo="+pageNo);
         }else {
             System.out.println(furn.getName() + "删除失败");
         }
@@ -85,6 +90,7 @@ public class FurnServlet extends BasicServlet {
     public void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Furn furn = new Furn();
         Map<String, String[]> parameterMap = req.getParameterMap();
+        String pageNo = req.getParameter("pageNo");
         System.out.println("=======================");
         for (String key : parameterMap.keySet()){
             System.out.println(key);
@@ -96,7 +102,7 @@ public class FurnServlet extends BasicServlet {
         }
         if(fsi.updateFurn(furn)){
             System.out.println(furn.getName()+"更新成功");
-            resp.sendRedirect(req.getContextPath()+"/manage/FurnServlet?action=login");
+            resp.sendRedirect(req.getContextPath()+"/manage/FurnServlet?action=page&pageNo="+pageNo);
         } else {
             System.out.println("更新失败");
         }
@@ -105,8 +111,10 @@ public class FurnServlet extends BasicServlet {
         String id = req.getParameter("id");
         Furn furn = fsi.getFurnById(Integer.parseInt(id));
         System.out.println(furn);
+        String pageNo = req.getParameter("pageNo");
         req.setAttribute("furn",furn);
-        req.getRequestDispatcher("/views/manage/furn_update.jsp").forward(req, resp);
+        req.setAttribute("pageNo",pageNo);
+        req.getRequestDispatcher("/views/manage/furn_update.jsp?pageNo="+pageNo).forward(req, resp);
     }
 
 //    @Override

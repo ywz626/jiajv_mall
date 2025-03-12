@@ -94,7 +94,7 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">家居后台管理-添加家居</h3>
+        <h3 class="cart-pageNo-title">家居后台管理-添加家居</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="manage/FurnServlet" method="post">
