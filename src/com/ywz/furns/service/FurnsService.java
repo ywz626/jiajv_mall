@@ -15,4 +15,6 @@ public interface FurnsService {
     public boolean updateFurn(Furn furn);
     public Furn getFurnById(Integer id);
     public Page<Furn> getPage(Integer pageNo, Integer pageSize);
+    //通过模糊查询 获取Page
+    public Page<Furn> getPage(String name, Integer pageNo, Integer pageSize);
 }

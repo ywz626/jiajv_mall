@@ -22,4 +22,8 @@ public interface FurnsDAO {
     public int getTotalRows();
     // 获取一页中的数据集合
     public List<Furn> getPageData(int begin,int limit);
+    //通过传入家具名字来获取家具集合
+    public List<Furn> getPageData(String name, int begin, int limit);
+    // 获取搜索的家具的总共有多少行数据
+    public int getTotalRows(String name);
 }

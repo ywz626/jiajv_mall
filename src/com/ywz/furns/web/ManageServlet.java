@@ -21,8 +21,10 @@ public class ManageServlet extends BasicServlet {
         Manger manage = manger.checkPwd(uname,upwd);
         if (manage!= null) {
             req.getRequestDispatcher("/views/manage/manage_menu.jsp").forward(req,resp);
+            return;
         }else {
             req.getRequestDispatcher("/views/manage/manage_login.jsp").forward(req,resp);
+            return;
         }
     }
 //    @Override

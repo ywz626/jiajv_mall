@@ -26,7 +26,7 @@
 //        User user = userServlet.checkPwd(uname, upwd);
 //        if(user!=null) {
 //            System.out.println("登陆成功！！！");
-//            req.getRequestDispatcher("/views/member/login_ok.html").forward(req,resp);
+//            req.getRequestDispatcher("/views/member/login_ok.jsp").forward(req,resp);
 //        }else {
 //            System.out.println("登陆失败！！！");
 //            req.setAttribute("msg","用户名或密码错误");

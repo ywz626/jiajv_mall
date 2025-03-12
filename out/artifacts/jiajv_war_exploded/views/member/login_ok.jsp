@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,6 +27,30 @@
                     </div>
                 </div>
                 <!-- Header Logo End -->
+                <div class="col align-self-center">
+                    <div class="header-actions">
+                        <!-- Single Wedge Start -->
+                        <div class="header-bottom-set dropdown">
+                            <a>欢迎: ${sessionScope.user}</a>
+                        </div>
+                        <div class="header-bottom-set dropdown">
+                            <a href="views/manage/manage_login.jsp">后台管理</a>
+                        </div>
+                        <div class="header-bottom-set dropdown">
+                            <a href="UserServlet?action=exit" onclick="return confirm('确定要退出么？')">安全退出</a>
+                        </div>
+                        <!-- Single Wedge End -->
+                        <a href="#offcanvas-cart"
+                           class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+                            <i class="icon-handbag"> 购物车</i>
+                            <span class="header-action-num">88</span>
+                        </a>
+                        <a href="#offcanvas-mobile-menu"
+                           class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+                            <i class="icon-menu"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -41,7 +65,7 @@
                                                   alt="Site Logo"/></a>
                     </div>
                 </div>
-                <!-- Header Logo End -->
+
             </div>
         </div>
     </div>
@@ -57,7 +81,7 @@
             <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
-                        <a class="active"  href="index.html">
+                        <a class="active"  href="index.jsp">
                             <h4>登录成功, 返回首页</h4>
                         </a>
                     </div>

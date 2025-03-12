@@ -44,13 +44,24 @@
             //         })
             //
             // })
+            if ("${requestScope.active}" == "register") {
+                $("#register_tab")[0].click();//模拟点击
+                $("#username").val("${requestScope.uname}");
+                $("#password").val("${requestScope.upwd}");
+                $("#repwd").val("${requestScope.upwd}");
+                $("#email").val("${requestScope.email}");
+            }
 
+            //点击验证码的图片可以更新验证码的功能
+            $("#imgcode").click(function(){
+                this.src ="<%=request.getContextPath()+"/"%>KaptchaServlet?d="+new Date();
+            })
 
             //决定是显示登录还是注册tab “” 不能少
             //如果注册失败，显示注册tab , 而不是默认的登录tab, 增加该代码
-            if ("${requestScope.active}" == "register") {
-                $("#register_tab")[0].click();//模拟点击
-            }
+            <%--if ("${requestScope.active}" === "register") {--%>
+            <%--    $("#register_tab")[0].click();//模拟点击--%>
+            <%--}--%>
 
             //对验证码图片进行处理, 绑定一个点击事件，可以获取新的验证码
             <%--$("#codeImg").click(function () {--%>
@@ -68,11 +79,11 @@
                 // alert("usernameVal=" + usernameVal)
 
                 //编写正则表达式来进行验证.
-                var usernamePattern = /^\w{6,10}$/;
+                var usernamePattern = /^\w{2,10}$/;
                 //验证
                 if (!usernamePattern.test(usernameVal)) {
                     //展示错误提示, jquery属性过滤器
-                    $("span[class='errorMsg']").text("用户名格式不对, 需要6-10字符");
+                    $("span[class='errorMsg']").text("用户名格式不对, 需要2-10字符");
                     return false;//不提交 , 返回false
                 }
 
@@ -90,7 +101,7 @@
                 //两次密码相同
                 //得到第二次输入密码
                 var repwdVal = $("#repwd").val();
-                if (repwdVal != passwordVal) {
+                if (repwdVal != passwordVal || repwdVal == "") {
                     $("span.errorMsg").text("输入的两次密码不同");
                     return false;
                 }
@@ -105,18 +116,13 @@
                     return false;
                 }
 
-                // 验证码：浏览器这里验证不能为空
-                // var codeText = $("#code").val();
-                // //去掉验证码前后空格
-                // codeText = $.trim(codeText);
-                // if (codeText == null || codeText == "") {
-                //     //提示
-                //     $("span.errorMsg").text("验证码不能为空！");
-                //     return false;
-                // }
-
+                let code = $("#code").val();
+                if(code==null || code==""){
+                    $("span.errorMsg").text("验证码不能为空");
+                    return false;
+                }
                 //到这里就全部过关. => 我们暂时不提交，显示验证通过信息
-                $("span.errorMsg").text("验证通过...");
+                // $("span.errorMsg").text("验证通过...");
                 //目前我们写了后台，当验证通过时，就提交给后台
                 return true;
 
@@ -176,7 +182,7 @@
                         <a class="active" data-bs-toggle="tab" href="#lg1">
                             <h4>会员登录</h4>
                         </a>
-                        <a data-bs-toggle="tab" href="#lg2">
+                        <a id="register_tab" data-bs-toggle="tab" href="#lg2">
                             <h4>会员注册</h4>
                         </a>
                     </div>
@@ -204,16 +210,16 @@
                         <div id="lg2" class="tab-pane">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <span class="errorMsg"
-                                          style="float: right; font-weight: bold; font-size: 20pt; margin-left: 10px;"></span>
+                                    <span class="errorMsg" style="font-size: 18pt;font-weight: bold;float: right;color: gainsboro">
+                                        ${requestScope.msg}</span>
                                     <form action="UserServlet" method="post">
                                         <input type="hidden" name="action" value="register">
                                         <input type="text" id="username" name="user-name" placeholder="Username"/>
                                         <input type="password" id="password" name="user-password" placeholder="输入密码"/>
                                         <input type="password" id="repwd" name="user-password" placeholder="确认密码"/>
                                         <input name="user-email" id="email" placeholder="电子邮件" type="email"/>
-                                        <input type="text" id="code" name="user-name" style="width: 50%" id="code"
-                                               placeholder="验证码"/>　　<img alt="" src="assets/images/code/code.bmp">
+                                        <input type="text" id="code" name="code" style="width: 50%" id="code"
+                                               placeholder="验证码"/>　　<img alt="" id="imgcode" src="KaptchaServlet">
                                         <div class="button-box">
                                             <button type="submit" id="sub-btn"><span>会员注册</span></button>
                                         </div>

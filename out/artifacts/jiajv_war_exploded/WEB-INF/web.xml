@@ -23,6 +23,14 @@
         <servlet-name>FurnServlet</servlet-name>
         <servlet-class>com.ywz.furns.web.FurnServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <url-pattern>/KaptchaServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FurnServlet</servlet-name>
         <url-pattern>/manage/FurnServlet</url-pattern>

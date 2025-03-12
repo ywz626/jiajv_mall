@@ -53,4 +53,14 @@ public class FurnsDAOImpl extends BasicDAO<Furn> implements FurnsDAO {
         String sql = "select * from furns order by id asc limit ? offset ?";
         return queryMulti(sql, Furn.class, limit,begin);
     }
+
+    @Override
+    public List<Furn> getPageData(String name, int begin, int limit) {
+        String sql = "select * from furns where name like ? order by id asc limit ? offset ?";
+        return queryMulti(sql, Furn.class,"%" + name + "%", limit, begin);
+    }
+    public int getTotalRows(String name){
+        String sql = "select count(*) from furns where name like ?";
+        return ((Number)queryScalar(sql, "%" + name + "%")).intValue();
+    }
 }

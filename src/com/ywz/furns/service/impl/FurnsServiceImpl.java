@@ -62,4 +62,32 @@ public class FurnsServiceImpl implements FurnsService {
     public Furn getFurnById(Integer id) {
         return furnsDAO.getFurn(id);
     }
+
+    @Override
+    public Page<Furn> getPage(String name, Integer pageNo, Integer pageSize) {
+        //        private Integer pageNo
+//         一页最多可以显示几页数据
+//        private Integer page_size = PAGE_SIZE;
+//        // 总共有多少页数据 是算出来的
+//        private Integer pageTotal;
+//        //总共有多少行数据
+//        private Integer pageTotalCount;
+//        // 数据集合
+//        private List<T> dataList;
+//        private String url;
+        Page<Furn> Page = new Page<>();
+        Page.setPage_size(pageSize);
+        int totalRows = furnsDAO.getTotalRows(name);
+        Page.setPageTotalCount(totalRows);
+        int pageTotal = totalRows/pageSize;
+        if(totalRows % pageSize!= 0){
+            pageTotal++;
+        }
+        Page.setPageTotal(pageTotal);
+        Page.setPageNo(pageNo);
+        int begin = (pageNo-1) * pageSize;
+        List<Furn> pageData = furnsDAO.getPageData(name, begin, pageSize);
+        Page.setDataList(pageData);
+        return Page;
+    }
 }

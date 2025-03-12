@@ -30,6 +30,7 @@ public class FurnServlet extends BasicServlet {
 //        }
         request.setAttribute("page",page);
         request.getRequestDispatcher("/views/manage/furn_manage.jsp").forward(request, response);
+        return;
     }
 
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,6 +40,7 @@ public class FurnServlet extends BasicServlet {
            // System.out.println("成功");
             req.setAttribute("furns", furns);
             req.getRequestDispatcher("/views/manage/furn_manage.jsp").forward(req, resp);
+            return;
         }
     }
 
@@ -66,6 +68,7 @@ public class FurnServlet extends BasicServlet {
         if (fsi.addFurn(furn)) {
             System.out.println("添加家具成功");
             resp.sendRedirect("/jiajv/manage/FurnServlet?action=login");
+            return;
             //请求转发会造成刷新页面时重复提交数据，使用重定向解决
             //req.getRequestDispatcher("/manage/FurnServlet?action=login").forward(req,resp);
         } else {
