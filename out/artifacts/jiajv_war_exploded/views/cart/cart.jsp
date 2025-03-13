@@ -144,7 +144,7 @@
                             <div class="cart-shiping-update-wrapper">
                                 <h4>共${sessionScope.cart.totalCount}件商品 总价 ${sessionScope.cart.totalPrice}元</h4>
                                 <div class="cart-shiping-update">
-                                    <a href="views/order/order.jsp">购 物 车 结 账</a>
+                                    <a href="OrderServlet?action=saveOrder">购 物 车 - 生 成 订 单</a>
                                 </div>
                                 <div class="cart-clear">
                                     <a href="index.jsp">继 续 购 物</a>

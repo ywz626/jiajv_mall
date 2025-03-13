@@ -5,14 +5,34 @@ import java.math.BigDecimal;
 /**
  * @author 于汶泽
  */
-public class order_item {
+public class OrderItem {
+    private Integer id;
     private String name;
     private BigDecimal price;
     private Integer count;
     private BigDecimal total_price;
     private String order_id;
 
-    public order_item() {
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public OrderItem(Integer id, String name, BigDecimal price, Integer count, BigDecimal total_price, String order_id) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.count = count;
+        this.total_price = total_price;
+        this.order_id = order_id;
+    }
+
+
+    public OrderItem() {
     }
 
     public String getName() {
@@ -55,11 +75,4 @@ public class order_item {
         this.order_id = order_id;
     }
 
-    public order_item(String name, BigDecimal price, Integer count, BigDecimal total_price, String order_id) {
-        this.name = name;
-        this.price = price;
-        this.count = count;
-        this.total_price = total_price;
-        this.order_id = order_id;
-    }
 }

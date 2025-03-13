@@ -174,7 +174,7 @@
                                         <li class="li"><a class="single-link" href="cart.html">我的购物车</a></li>
                                         <li class="li"><a class="single-link" href="login.html">登录</a></li>
                                         <li class="li"><a class="single-link" href="wishlist.html">感兴趣的</a></li>
-                                        <li class="li"><a class="single-link" href="checkout.html">结账</a></li>
+                                        <li class="li"><a class="single-link" href="checkout.jsp">结账</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -62,7 +62,8 @@ public class CartServlet extends BasicServlet{
     }
     // 清空购物车
     public void deleteAll(HttpServletRequest req,HttpServletResponse resp) throws IOException {
-        req.getSession().removeAttribute("cart");
+        Cart cart = (Cart)req.getSession().getAttribute("cart");
+        cart.clean();
         resp.sendRedirect("index.jsp");
     }
 }

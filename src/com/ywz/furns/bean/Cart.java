@@ -73,4 +73,7 @@ public class Cart {
                 "cartItems=" + cartItems +
                 '}';
     }
+    public void clean(){
+        cartItems.clear();
+    }
 }

@@ -1,8 +1,11 @@
-<!DOCTYPE html>
+<%@ page import="java.awt.geom.Area" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <base href="<%=request.getContextPath()+"/"%>">
     <title>韩顺平教育-家居网购</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
@@ -71,8 +74,8 @@
             <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
-                        <a class="active" href="index.jsp">
-                            <h4>订单已结算, 订单号-hello</h4>
+                        <a class="active" href="OrderServlet?action=search">
+                            <h4>订单已结算, 订单号-${sessionScope.num}</h4>
                         </a>
                     </div>
                 </div>
@@ -145,7 +148,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育</p>
+                        <p class="copy-text">Copyright &copy; ywz626家具管理系统</p>
                     </div>
                 </div>
             </div>

@@ -89,17 +89,19 @@
                                 <th>详情</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-				<td class="product-name">16248893425621</td>
-                                <td class="product-name">2100-12-12 22:10:10</td>
-                                <td class="product-price-cart"><span class="amount">160.00</span></td>
-                                <td class="product-name"><a href="#">未发货</a></td>
-                                <td class="product-remove">
-                                    <a href="views/order/order_detail.jsp"><i class="icon-eye"></i></a>
-                                </td>
-                            </tr>
-                            </tbody>
+                            <c:forEach items="" var="">
+                                <tbody>
+                                <tr>
+                                    <td class="product-name">16248893425621</td>
+                                    <td class="product-name">2100-12-12 22:10:10</td>
+                                    <td class="product-price-cart"><span class="amount">160.00</span></td>
+                                    <td class="product-name"><a href="#">未发货</a></td>
+                                    <td class="product-remove">
+                                        <a href="views/order/order_detail.jsp"><i class="icon-eye"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </c:forEach>
                         </table>
                     </div>
                 </form>
@@ -148,7 +150,7 @@
                                         <li class="li"><a class="single-link" href="cart.html">我的购物车</a></li>
                                         <li class="li"><a class="single-link" href="login.html">登录</a></li>
                                         <li class="li"><a class="single-link" href="wishlist.html">感兴趣的</a></li>
-                                        <li class="li"><a class="single-link" href="checkout.html">结账</a></li>
+                                        <li class="li"><a class="single-link" href="checkout.jsp">结账</a></li>
                                     </ul>
                                 </div>
                             </div>
