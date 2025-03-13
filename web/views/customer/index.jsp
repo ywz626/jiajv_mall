@@ -66,7 +66,7 @@
                                 <a>欢迎： ${sessionScope.user.name}</a>
                             </div>
                             <div class="header-bottom-set dropdown">
-                                <a href="#">订单管理</a>
+                                <a href="OrderServlet?action=search">订单管理</a>
                             </div>
                             <div class="header-bottom-set dropdown">
                                 <a href="UserServlet?action=exit" onclick="return confirm('确定要退出么？')">安全退出</a>

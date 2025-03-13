@@ -101,20 +101,17 @@
 
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td class="product-name"><a href="#">Product Name</a></td>
-                                <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                <td class="product-quantity">12</td>
-                                <td class="product-subtotal">$70.00</td>
-                            </tr>
-                            <tr>
-                                <td class="product-name"><a href="#">Product Name</a></td>
-                                <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                <td class="product-quantity">12</td>
-                                <td class="product-subtotal">$70.00</td>
-                            </tr>
-                            </tbody>
+                            <c:forEach items="${requestScope.orderItems}" var="OrderItem">
+                                <tbody>
+                                <tr>
+                                    <td class="product-name"><a href="#">${OrderItem.name}</a></td>
+                                    <td class="product-price-cart"><span class="amount">$${OrderItem.price}</span></td>
+                                    <td class="product-quantity">${OrderItem.count}</td>
+                                    <td class="product-subtotal">$${OrderItem.total_price}</td>
+                                </tr>
+                                </tbody>
+                            </c:forEach>
+
                         </table>
                     </div>
                     <div class="row">
@@ -122,7 +119,7 @@
                             <div class="cart-shiping-update-wrapper">
                                 <h4>共xx件商品 总价 xxxx.xx元</h4>
                                 <div class="cart-clear">
-                                    <a href="#">继 续 购 物</a>
+                                    <a href="index.jsp">继 续 购 物</a>
                                 </div>
                             </div>
                         </div>

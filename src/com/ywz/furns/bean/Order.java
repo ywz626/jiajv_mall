@@ -12,6 +12,8 @@ public class Order {
     private BigDecimal price;
     private int status;
     private int mumber_id;
+    private Integer total_count = 0;
+    private Integer total_price = 0;
 
     public String getNumber() {
         return number;

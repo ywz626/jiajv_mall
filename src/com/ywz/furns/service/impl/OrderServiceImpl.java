@@ -10,6 +10,7 @@ import com.ywz.furns.dao.impl.OrderItemDAOImpl;
 import com.ywz.furns.service.OrderService;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 于汶泽
@@ -18,6 +19,17 @@ public class OrderServiceImpl implements OrderService {
     private OrderDAO orderDAO = new OrderDAOImpl();
     private OrderItemDAO orderItemDAO = new OrderItemDAOImpl();
     private FurnsDAO furnsDAO = new FurnsDAOImpl();
+
+    @Override
+    public List<OrderItem> getOrderItems(String num) {
+        return orderItemDAO.getOrderItems(num);
+    }
+
+    @Override
+    public Order getOrder(String number) {
+        return orderDAO.getOrder(number);
+    }
+
     @Override
     public String saveOrder(Cart cart, int id) {
         Order order = new Order();

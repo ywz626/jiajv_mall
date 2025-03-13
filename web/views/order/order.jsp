@@ -38,7 +38,7 @@
                 <div class="col align-self-center">
                     <div class="header-actions">
                         <div class="header-bottom-set dropdown">
-                            <a>欢迎: hello</a>
+                            <a>欢迎: ${sessionScope.user.name}</a>
                         </div>
                         <div class="header-bottom-set dropdown">
                             <a href="#">订单管理</a>
@@ -89,19 +89,17 @@
                                 <th>详情</th>
                             </tr>
                             </thead>
-                            <c:forEach items="" var="">
                                 <tbody>
                                 <tr>
-                                    <td class="product-name">16248893425621</td>
-                                    <td class="product-name">2100-12-12 22:10:10</td>
-                                    <td class="product-price-cart"><span class="amount">160.00</span></td>
+                                    <td class="product-name">${requestScope.order.number}</td>
+                                    <td class="product-name">${requestScope.order.date}</td>
+                                    <td class="product-price-cart"><span class="amount">${requestScope.order.price}</span></td>
                                     <td class="product-name"><a href="#">未发货</a></td>
                                     <td class="product-remove">
-                                        <a href="views/order/order_detail.jsp"><i class="icon-eye"></i></a>
+                                        <a href="OrderServlet?action=detail"><i class="icon-eye"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>
-                            </c:forEach>
                         </table>
                     </div>
                 </form>
