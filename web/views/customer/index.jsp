@@ -35,7 +35,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo"/></a>
+                        <img src="assets/images/logo/1.png" alt="Site Logo"/>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -104,7 +104,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png" alt="Site Logo"/></a>
+                        <a href="index.jsp"><img width="280px" src="assets/images/logo/logo.png" alt="Site Logo"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->

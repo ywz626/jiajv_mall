@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <title>于汶泽家具网购系统！教育-家居网购</title>
+    <title>于汶泽家具网购系统！</title>
     <base href="http://localhost:8080/jiajv/">
     <base href="http://localhost:10000/jiaju_mall/">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -23,7 +23,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo"/></a>
+                        <a href="index.jsp"><img src="assets/images/logo/1.png" alt="Site Logo"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -61,7 +61,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png"
+                        <a href="index.jsp"><img width="280px" src="assets/images/logo/logo.png"
                                                   alt="Site Logo"/></a>
                     </div>
                 </div>
