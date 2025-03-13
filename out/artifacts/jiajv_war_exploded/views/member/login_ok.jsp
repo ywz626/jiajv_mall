@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <title>韩顺平教育-家居网购</title>
+    <title>于汶泽家具网购系统！教育-家居网购</title>
     <base href="http://localhost:8080/jiajv/">
     <base href="http://localhost:10000/jiaju_mall/">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -31,7 +31,7 @@
                     <div class="header-actions">
                         <!-- Single Wedge Start -->
                         <div class="header-bottom-set dropdown">
-                            <a>欢迎: ${sessionScope.user}</a>
+                            <a>欢迎: ${sessionScope.user.name}</a>
                         </div>
                         <div class="header-bottom-set dropdown">
                             <a href="views/manage/manage_login.jsp">后台管理</a>
@@ -40,10 +40,10 @@
                             <a href="UserServlet?action=exit" onclick="return confirm('确定要退出么？')">安全退出</a>
                         </div>
                         <!-- Single Wedge End -->
-                        <a href="#offcanvas-cart"
+                        <a href="views/cart/cart.jsp"
                            class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                             <i class="icon-handbag"> 购物车</i>
-                            <span class="header-action-num">88</span>
+                            <span class="header-action-num">${sessionScope.cart.totalCount}</span>
                         </a>
                         <a href="#offcanvas-mobile-menu"
                            class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright &copy; 2021 于汶泽家具网购系统！教育~</p>
                     </div>
                 </div>
             </div>

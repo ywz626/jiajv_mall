@@ -13,6 +13,15 @@
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css">
     <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(function (){
+            $("button.add-to-cart").click(function (){
+                let furnId = $(this).data("furn-id");
+                alert(furnId);
+                location.href="CartServlet?action=addCart&id="+furnId;
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -54,7 +63,7 @@
                         </c:if>
                         <c:if test="${not empty sessionScope.user}">
                             <div class="header-bottom-set dropdown">
-                                <a>欢迎： ${sessionScope.user}</a>
+                                <a>欢迎： ${sessionScope.user.name}</a>
                             </div>
                             <div class="header-bottom-set dropdown">
                                 <a href="#">订单管理</a>
@@ -66,6 +75,11 @@
                                 <a href="views/manage/manage_login.jsp">后台管理</a>
                             </div>
                         </c:if>
+                        <a href="views/cart/cart.jsp"
+                           class="header-action-btn header-action-btn-cart pr-0">
+                            <i class="icon-handbag"> 购物车</i>
+                            <span class="header-action-num">${sessionScope.cart.totalCount}</span>
+                        </a>
                         <!-- Single Wedge End -->
 <%--                        <a href="#offcanvas-cart"--%>
 <%--                           class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">--%>
@@ -139,13 +153,16 @@
                                                    data-bs-target="#exampleModal"><i
                                                         class="icon-size-fullscreen"></i></a>
                                             </div>
-                                            <button title="Add To Cart" class=" add-to-cart">Add
+                                            <button title="Add To Cart" data-furn-id="${furn.id}" class="add-to-cart">Add
                                                 To Cart
                                             </button>
                                         </div>
                                         <div class="content">
                                             <h5 class="title">
                                                 <a href="shop-left-sidebar.html">Simple 于汶泽的家具管理系统 </a></h5>
+<%--                                            <span class="price">--%>
+<%--                                                <span class="new">id:　${furn.id}</span>--%>
+<%--                                            </span>--%>
                                             <span class="price">
                                                 <span class="new">家居:　${furn.name}</span>
                                             </span>
@@ -303,7 +320,7 @@
                 <div class="row flex-sm-row-reverse">
                     <div class="col-md-6 text-right">
                         <div class="payment-link">
-                            <img src="#" alt="">
+                            <img src="" alt="">
                         </div>
                     </div>
                     <div class="col-md-6 text-left">

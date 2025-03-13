@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <title>韩顺平教育-家居网购</title>
+    <title>于汶泽家具网购系统！</title>
     <base href="<%=request.getContextPath() + "/"%>">
     <!-- 移动端适配 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -114,7 +114,7 @@
                                     </td>
                                     <td class="product-name"><a href="#">${furn.name}</a></td>
                                     <td class="product-name"><a href="#">${furn.maker}</a></td>
-                                    <td class="product-price-cart"><span class="amount">${furn.price}</span></td>
+                                    <td class="product-price-cart"><span class="count">${furn.price}</span></td>
                                     <td class="product-quantity">
                                             ${furn.sales}
                                     </td>
@@ -304,7 +304,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright &copy; 于汶泽家具网购系统！</p>
                     </div>
                 </div>
             </div>

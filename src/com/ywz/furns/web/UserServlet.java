@@ -27,7 +27,7 @@ public class UserServlet extends BasicServlet {
         User user = userService.checkPwd(uname, upwd);
         if (user != null) {
             //System.out.println("登陆成功！！！");
-            session.setAttribute("user", uname);
+            session.setAttribute("user",user);
             req.getRequestDispatcher("/views/member/login_ok.jsp").forward(req, resp);
             return;
         } else {
@@ -49,7 +49,7 @@ public class UserServlet extends BasicServlet {
         String code = req.getParameter("code");
         String token = (String) session.getAttribute(KAPTCHA_SESSION_KEY);
         session.removeAttribute(token);
-        System.out.println(user);
+        //System.out.println(user);
         if (!code.equalsIgnoreCase(token)) {
             req.setAttribute("active","register");
             req.setAttribute("msg", "验证码输入错误");
@@ -61,6 +61,7 @@ public class UserServlet extends BasicServlet {
         }
         if (!userService.isUsernameExist(uname)) {
             userService.login(user);
+            req.getSession().setAttribute("user",user);
             req.getRequestDispatcher("/views/member/register_ok.html").forward(req, resp);
         } else {
             System.out.println("用户名被占用");

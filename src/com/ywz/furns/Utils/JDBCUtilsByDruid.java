@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * @author 韩顺平
+ * @author 于汶泽家具网购系统！
  * @version 1.0
  * 基于druid数据库连接池的工具类
  */
