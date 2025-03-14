@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <base href="<%=request.getContextPath()+"/"%>">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <title>韩顺平教育-家居网购</title>
+    <title>ywz626家具管理系统</title>
     <!-- 移动端适配 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
@@ -89,18 +89,23 @@
                                 <th>详情</th>
                             </tr>
                             </thead>
+                            <c:forEach items="${requestScope.order}" var="Order">
                                 <tbody>
                                 <tr>
-                                    <td class="product-name">${requestScope.order.number}</td>
-                                    <td class="product-name">${requestScope.order.date}</td>
-                                    <td class="product-price-cart"><span class="amount">${requestScope.order.price}</span></td>
+                                    <td class="product-name">${Order.number}</td>
+                                    <td class="product-name">${Order.date}</td>
+                                    <td class="product-price-cart"><span class="amount">${Order.price}</span></td>
                                     <td class="product-name"><a href="#">未发货</a></td>
                                     <td class="product-remove">
-                                        <a href="OrderServlet?action=detail"><i class="icon-eye"></i></a>
+                                        <a href="OrderServlet?action=detail&num=${Order.number}"><i class="icon-eye"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>
+                            </c:forEach>
                         </table>
+                    </div>
+                    <div class="cart-clear">
+                        <a href="index.jsp">继 续 购 物</a>
                     </div>
                 </form>
             </div>
@@ -172,7 +177,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright &copy; ywz626家具管理系统！</p>
                     </div>
                 </div>
             </div>

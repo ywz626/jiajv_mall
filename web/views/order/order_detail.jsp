@@ -117,7 +117,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
-                                <h4>共xx件商品 总价 xxxx.xx元</h4>
+                                <h4>共${requestScope.order.total_count}件商品 总价 ${requestScope.order.total_price}元</h4>
                                 <div class="cart-clear">
                                     <a href="index.jsp">继 续 购 物</a>
                                 </div>
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright ywz626 家具管理系统</p>
                     </div>
                 </div>
             </div>

@@ -36,7 +36,7 @@
                             <a>欢迎: hello</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                            <a href="#">订单管理</a>
+                            <a href="OrderServlet?action=searchAll">订单管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
                             <a href="memberServlet?action=logout">安全退出</a>

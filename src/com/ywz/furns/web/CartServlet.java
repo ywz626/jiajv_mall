@@ -25,6 +25,9 @@ public class CartServlet extends BasicServlet{
 //        System.out.println(id1);
         int id = DbUtils.getInt(req.getParameter("id"),0);
         Furn furnById = furn.getFurnById(id);
+        if(furnById.getStock()<=0){
+            return;
+        }
         int count = 1;
         if(furnById!=null){
             CartItem cartItem = new CartItem(furnById.getId(), furnById.getName(), furnById.getPrice(), count, furnById.getPrice());

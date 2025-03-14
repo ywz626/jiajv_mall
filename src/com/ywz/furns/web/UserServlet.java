@@ -25,6 +25,7 @@ public class UserServlet extends BasicServlet {
         String uname = req.getParameter("user-name");
         String upwd = req.getParameter("user-password");
         User user = userService.checkPwd(uname, upwd);
+        System.out.println("userid: "+ user.getId());
         if (user != null) {
             //System.out.println("登陆成功！！！");
             session.setAttribute("user",user);
@@ -61,7 +62,8 @@ public class UserServlet extends BasicServlet {
         }
         if (!userService.isUsernameExist(uname)) {
             userService.login(user);
-            req.getSession().setAttribute("user",user);
+            User user1 = userService.checkPwd(uname, upwd);
+            req.getSession().setAttribute("user",user1);
             req.getRequestDispatcher("/views/member/register_ok.html").forward(req, resp);
         } else {
             System.out.println("用户名被占用");

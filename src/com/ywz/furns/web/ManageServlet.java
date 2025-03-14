@@ -20,6 +20,7 @@ public class ManageServlet extends BasicServlet {
         String upwd = req.getParameter("password");
         Manger manage = manger.checkPwd(uname,upwd);
         if (manage!= null) {
+            req.getSession().setAttribute("manage", manage);
             req.getRequestDispatcher("/views/manage/manage_menu.jsp").forward(req,resp);
             return;
         }else {

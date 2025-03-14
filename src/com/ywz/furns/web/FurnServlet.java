@@ -24,7 +24,7 @@ public class FurnServlet extends BasicServlet {
         int pageNo = DbUtils.getInt(request.getParameter("pageNo"), 1);
         int pageSize = DbUtils.getInt(request.getParameter("pageSize"), Page.PAGE_SIZE);
         Page<Furn> page = fsi.getPage(pageNo, pageSize);
-        List<Furn> dataList = page.getDataList();
+        //List<Furn> dataList = page.getDataList();
 //        for (Furn furn : dataList) {
 //            System.out.println(furn);
 //        }
@@ -33,16 +33,16 @@ public class FurnServlet extends BasicServlet {
         return;
     }
 
-    public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Furn> furns = fsi.getFurns();
-        //System.out.println(furns);
-        if (furns != null && furns.size() > 0) {
-           // System.out.println("成功");
-            req.setAttribute("furns", furns);
-            req.getRequestDispatcher("/views/manage/furn_manage.jsp").forward(req, resp);
-            return;
-        }
-    }
+//    public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        List<Furn> furns = fsi.getFurns();
+//        //System.out.println(furns);
+//        if (furns != null && furns.size() > 0) {
+//           // System.out.println("成功");
+//            req.setAttribute("furns", furns);
+//            req.getRequestDispatcher("").forward(req, resp);
+//            return;
+//        }
+//    }
 
     public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        String name = req.getParameter("name");
@@ -67,7 +67,7 @@ public class FurnServlet extends BasicServlet {
         }
         if (fsi.addFurn(furn)) {
             System.out.println("添加家具成功");
-            resp.sendRedirect("/jiajv/manage/FurnServlet?action=login");
+            resp.sendRedirect("/jiajv/manage/FurnServlet?action=page");
             return;
             //请求转发会造成刷新页面时重复提交数据，使用重定向解决
             //req.getRequestDispatcher("/manage/FurnServlet?action=login").forward(req,resp);
@@ -94,10 +94,10 @@ public class FurnServlet extends BasicServlet {
         Furn furn = new Furn();
         Map<String, String[]> parameterMap = req.getParameterMap();
         String pageNo = req.getParameter("pageNo");
-        System.out.println("=======================");
-        for (String key : parameterMap.keySet()){
-            System.out.println(key);
-        }
+//        System.out.println("=======================");
+//        for (String key : parameterMap.keySet()){
+//            System.out.println(key);
+//        }
         try {
             BeanUtils.populate(furn,req.getParameterMap());
         }catch (Exception e){

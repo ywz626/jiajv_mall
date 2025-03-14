@@ -13,7 +13,23 @@ public class Order {
     private int status;
     private int mumber_id;
     private Integer total_count = 0;
-    private Integer total_price = 0;
+    private BigDecimal total_price = new BigDecimal(0);
+
+    public Integer getTotal_count() {
+        return total_count;
+    }
+
+    public void setTotal_count(Integer total_count) {
+        this.total_count = total_count;
+    }
+
+    public BigDecimal getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(BigDecimal total_price) {
+        this.total_price = total_price;
+    }
 
     public String getNumber() {
         return number;

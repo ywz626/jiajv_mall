@@ -61,10 +61,10 @@
 
                         <!-- Single Wedge Start -->
                         <div class="header-bottom-set dropdown">
-                            <a href="#">家居管理</a>
+                            <a href="manage/FurnServlet?action=page&pageNo=1">家居管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                            <a href="#">订单管理</a>
+                            <a href="OrderServlet?action=searchAll">订单管理</a>
                         </div>
                     </div>
                 </div>

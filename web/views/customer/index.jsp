@@ -15,7 +15,7 @@
     <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(function (){
-            $("button.add-to-cart").click(function (){
+            $('button.add-to-cart').click(function (){
                 let furnId = $(this).data("furn-id");
                 alert(furnId);
                 location.href="CartServlet?action=addCart&id="+furnId;
@@ -66,15 +66,15 @@
                                 <a>欢迎： ${sessionScope.user.name}</a>
                             </div>
                             <div class="header-bottom-set dropdown">
-                                <a href="OrderServlet?action=search">订单管理</a>
+                                <a href="OrderServlet?action=searchAll">订单管理</a>
                             </div>
                             <div class="header-bottom-set dropdown">
                                 <a href="UserServlet?action=exit" onclick="return confirm('确定要退出么？')">安全退出</a>
                             </div>
-                            <div class="header-bottom-set dropdown">
-                                <a href="views/manage/manage_login.jsp">后台管理</a>
-                            </div>
                         </c:if>
+                        <div class="header-bottom-set dropdown">
+                            <a href="views/manage/manage_login.jsp">后台管理</a>
+                        </div>
                         <a href="views/cart/cart.jsp"
                            class="header-action-btn header-action-btn-cart pr-0">
                             <i class="icon-handbag"> 购物车</i>
@@ -153,9 +153,16 @@
                                                    data-bs-target="#exampleModal"><i
                                                         class="icon-size-fullscreen"></i></a>
                                             </div>
-                                            <button title="Add To Cart" data-furn-id="${furn.id}" class="add-to-cart">Add
-                                                To Cart
-                                            </button>
+                                            <c:if test="${furn.stock>0}">
+                                                <button title="Add To Cart" data-furn-id="${furn.id}" class="add-to-cart">Add
+                                                    To Cart
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${furn.stock<=0}">
+                                                <button title="暂时 缺货" style="color: red">暂时 缺货
+                                                </button>
+                                            </c:if>
+
                                         </div>
                                         <div class="content">
                                             <h5 class="title">

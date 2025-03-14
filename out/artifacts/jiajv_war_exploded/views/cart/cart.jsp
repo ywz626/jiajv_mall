@@ -46,10 +46,10 @@
                             <a>欢迎 ：</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                            <a href="#">订单管理</a>
+                            <a href="OrderServlet?action=searchAll">订单管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                            <a href="#">安全退出</a>
+                            <a href="UserServlet?action=exit" onclick="return confirm('确定要退出么？')">安全退出</a>
                         </div>
                     </div>
                 </div>

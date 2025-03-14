@@ -16,4 +16,6 @@ public interface OrderService {
     public Order getOrder(String number);
     // 获取orderItem集合
     public List<OrderItem> getOrderItems(String num);
+    //获取当前用户的order集合
+    public List<Order> getOrders(int id);
 }
