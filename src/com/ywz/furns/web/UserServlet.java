@@ -25,7 +25,7 @@ public class UserServlet extends BasicServlet {
         String uname = req.getParameter("user-name");
         String upwd = req.getParameter("user-password");
         User user = userService.checkPwd(uname, upwd);
-        System.out.println("userid: "+ user.getId());
+//        System.out.println("userid: "+ user.getId());
         if (user != null) {
             //System.out.println("登陆成功！！！");
             session.setAttribute("user",user);
